@@ -1,20 +1,20 @@
-" === Statusline ==============================================================
+" === qline ==============================================================
 
-if exists('g:skyline_status') && !g:skyline_status
+if exists('g:qline_status') && !g:qline_status
     finish
 endif
 
-let s:light  = skyline#light
-let s:dark   = skyline#dark
-let s:nlight = skyline#ndark
-let s:blue   = skyline#blue
-let s:yellow = skyline#yellow
+let s:light     = qline#colors.light
+let s:dark      = qline#colors.dark
+let s:secondary = qline#colors.secondary
+let s:primary   = qline#colors.primary
+let s:dirty     = qline#colors.dirty
 
-call skyline#hi("StatusLine",   s:light,  s:dark)
-call skyline#hi("StatusLineNC", s:blue,   s:dark)
-call skyline#hi("Mode",         s:dark,   s:blue)
-call skyline#hi("Dirty",        s:yellow, s:dark)
-call skyline#hi("Start",        s:blue,   s:blue)
+call qline#hi("StatusLine",   s:light,   s:dark)
+call qline#hi("StatusLineNC", s:primary, s:dark)
+call qline#hi("Mode",         s:dark,    s:primary)
+call qline#hi("Dirty",        s:dirty,   s:dark)
+call qline#hi("Start",        s:primary, s:primary)
 
 " =============================================================================
 
@@ -28,11 +28,11 @@ set statusline =
 
 " Indicate start of current buf's statusline, if buffer is active
 set statusline +=%#Start#
-set statusline +=%{skyline#check_active()}
+set statusline +=%{qline#check_active()}
 
 " Shows current file name + modified status
 set statusline +=%#Dirty#                     " change color to dirty indicator
-set statusline +=%{skyline#check_dirtybuf()}  " set dirty indicator
+set statusline +=%{qline#check_dirtybuf()}  " set dirty indicator
 set statusline +=\ %0*                        " change back to primary color
 set statusline +=%f                           " filename
 
@@ -49,7 +49,7 @@ set statusline +=\ %Y
 
 " Current mode
 set statusline +=\ %#Mode#                  " Mode color
-set statusline +=%{skyline#current_mode()}  " Show mode
+set statusline +=%{qline#current_mode()}  " Show mode
 
 " End
 set statusline +=%*

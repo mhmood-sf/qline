@@ -1,16 +1,16 @@
 " === Tabline =================================================================
 
-if exists('g:skyline_tab') && !g:skyline_tab
+if exists('g:qline_tab') && !g:qline_tab
     finish
 endif
 
-let s:light = skyline#light
-let s:dark  = skyline#dark
-let s:blue  = skyline#blue
+let s:light   = qline#colors.light
+let s:dark    = qline#colors.dark
+let s:primary = qline#colors.primary
 
-call skyline#hi("TabLine",    s:light, s:dark)
-call skyline#hi("CurrentBuf", s:dark,  s:blue)
-call skyline#hi("CurrentTab", s:dark,  s:blue)
+call qline#hi("TabLine",    s:light, s:dark)
+call qline#hi("CurrentBuf", s:dark,  s:primary)
+call qline#hi("CurrentTab", s:dark,  s:primary)
 
 " =============================================================================
 
@@ -19,11 +19,11 @@ set tabline =
 
 " Current buffer
 set tabline +=%#CurrentBuf#              " current buffer colour
-set tabline +=\ %{skyline#get_curbuf()}
+set tabline +=\ %{qline#get_curbuf()}
 
 " Remaining buffers
 set tabline +=\ %#TabLine#                      " back to primary tabline colour
-set tabline +=\ %{skyline#get_remainingbufs()}  " remaining buffers
+set tabline +=\ %{qline#get_remainingbufs()}  " remaining buffers
 set tabline +=%<                                " truncate if too many buffers
 
 " Alignment
@@ -35,7 +35,7 @@ set tabline +=\ │
 set tabline +=\ Tabs
 
 " Remaining tabs
-set tabline +=\ %{skyline#get_remainingtabs()}  " remaining tabs' numbers
+set tabline +=\ %{qline#get_remainingtabs()}  " remaining tabs' numbers
 
 " Current tab
 set tabline +=%#CurrentTab#     " current tab colour
