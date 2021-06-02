@@ -4,11 +4,11 @@ if exists('g:qline_status') && !g:qline_status
     finish
 endif
 
-let s:light     = qline#colors.light
-let s:dark      = qline#colors.dark
-let s:secondary = qline#colors.secondary
-let s:primary   = qline#colors.primary
-let s:dirty     = qline#colors.dirty
+let s:light     = qline#color.light
+let s:dark      = qline#color.dark
+let s:secondary = qline#color.secondary
+let s:primary   = qline#color.primary
+let s:dirty     = qline#color.dirty
 
 call qline#hi("StatusLine",   s:light,   s:dark)
 call qline#hi("StatusLineNC", s:primary, s:dark)

@@ -1,9 +1,19 @@
 " === qline ===================================================================
 
-let qline#colors = #{
-        \ dark:    "#282828", light:     "#FFFFFF",
-        \ primary: "#81a1c1", secondary: "#2e3440",
-        \ dirty:   "#ebcb8b" }
+let qline#colorschemes = {
+        \ "nord": #{
+            \ dark:    "#282828", light:     "#FFFFFF",
+            \ primary: "#81a1c1", secondary: "#2e3440",
+            \ dirty:   "#ebcb8b" },
+        \ "onedark": #{
+            \ dark:    "#282828", light:     "#FFFFFF",
+            \ primary: "#61afef", secondary: "#e5c07b",
+            \ dirty:   "#e06c75" }
+        \ }
+
+if !exists("qline#color")
+    let qline#color = qline#colorschemes["nord"]
+endif
 
 " Helper method to set fg and bg
 function qline#hi(group, guifg, guibg)
