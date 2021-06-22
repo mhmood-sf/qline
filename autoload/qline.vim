@@ -16,7 +16,7 @@ if !exists("qline#color")
 endif
 
 " Helper method to set fg and bg
-function qline#hi(group, guifg, guibg)
+function! qline#hi(group, guifg, guibg)
   if a:guifg != ""
     exec "hi " . a:group . " guifg=" . a:guifg
   endif
@@ -26,7 +26,7 @@ function qline#hi(group, guifg, guibg)
 endfunction
 
 " Returns formatted current buffer name
-function qline#get_curbuf() abort
+function! qline#get_curbuf() abort
     let l:curbuf = bufnr()
     for buf in getbufinfo()
         if buf.bufnr == l:curbuf
@@ -36,7 +36,7 @@ function qline#get_curbuf() abort
 endfunction
 
 " Returns remaining buffers formatted with separators
-function qline#get_remainingbufs() abort
+function! qline#get_remainingbufs() abort
     let l:curbuf = bufnr()
     let l:buflist = []
     for buf in getbufinfo()
@@ -50,7 +50,7 @@ function qline#get_remainingbufs() abort
     return join(l:buflist, ' | ')
 endfunction
 
-function qline#get_remainingtabs() abort
+function! qline#get_remainingtabs() abort
     let l:tablist = []
     for tab in gettabinfo()
         if tab.tabnr == tabpagenr()
@@ -79,7 +79,7 @@ let s:currentmode={
       \ 't' : 'Terminal'}
 
 " Return current mode (expanded)
-function qline#current_mode() abort
+function! qline#current_mode() abort
     if g:actual_curbuf == bufnr()
         let l:curmode = mode()
         let l:modelist = toupper(get(s:currentmode, l:curmode, 'V·Block '))
@@ -89,8 +89,8 @@ function qline#current_mode() abort
         return ''
 endfunction
 
-" Function that returns \" ●", to indicate a dirty buffer
-function qline#check_dirtybuf() abort
+" function! that returns \" ●", to indicate a dirty buffer
+function! qline#check_dirtybuf() abort
     let l:curbuf = bufnr()
     if getbufvar(l:curbuf, '&mod')
         return '  ●'
@@ -98,7 +98,7 @@ function qline#check_dirtybuf() abort
         return ''
 endfunction
 
-function qline#check_active() abort
+function! qline#check_active() abort
     return g:actual_curbuf == bufnr() ? ' ' : ''
 endfunction
 
