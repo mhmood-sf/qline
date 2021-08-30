@@ -7,12 +7,12 @@ let qline#colorschemes = {
             \ dirty:   "#ebcb8b" },
         \ "onedark": #{
             \ dark:    "#282828", light:     "#FFFFFF",
-            \ primary: "#61afef", secondary: "#e5c07b",
-            \ dirty:   "#e06c75" }
+            \ primary: "#e5c07b", secondary: "#61afef",
+            \ dirty:   "#61afef" }
         \ }
 
 if !exists("qline#color")
-    let qline#color = qline#colorschemes["nord"]
+    let qline#color = qline#colorschemes["onedark"]
 endif
 
 " Helper method to set fg and bg
@@ -25,7 +25,8 @@ function! qline#hi(group, guifg, guibg)
   endif
 endfunction
 
-" Returns formatted current buffer name
+" Returns formatted current buffer name:
+" [x] <buffer>
 function! qline#get_curbuf() abort
     let l:curbuf = bufnr()
     for buf in getbufinfo()
@@ -35,7 +36,8 @@ function! qline#get_curbuf() abort
     endfor
 endfunction
 
-" Returns remaining buffers formatted with separators
+" Returns formatted string showing non-active buffers:
+" [x] <buffer1> | [y] <buffer2> | [z] <buffer3>
 function! qline#get_remainingbufs() abort
     let l:curbuf = bufnr()
     let l:buflist = []
@@ -50,6 +52,8 @@ function! qline#get_remainingbufs() abort
     return join(l:buflist, ' | ')
 endfunction
 
+" Returns formatted string showing non-active tabs:
+" x | y | z
 function! qline#get_remainingtabs() abort
     let l:tablist = []
     for tab in gettabinfo()
@@ -89,7 +93,6 @@ function! qline#current_mode() abort
         return ''
 endfunction
 
-" function! that returns \" ●", to indicate a dirty buffer
 function! qline#check_dirtybuf() abort
     let l:curbuf = bufnr()
     if getbufvar(l:curbuf, '&mod')
