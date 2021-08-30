@@ -1,4 +1,7 @@
-# qline.vim
+# qline
+
+![qline](https://i.imgur.com/AoKaTfZ.png)
+
 my custom status + tab line for vim
 
 to disable the tabline: `let g:qline_tab = 0`
